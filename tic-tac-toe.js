@@ -52,3 +52,16 @@ document.getElementById("new-game-button").addEventListener("click", function() 
     document.getElementById("status").classList.remove("you-won");
     turn = "X";
 });
+if (!square.textContent) { 
+    let turn = "X";
+
+document.querySelectorAll("#board .square").forEach(square => {
+    square.addEventListener("click", function() {
+        if (!square.textContent) {
+            square.textContent = turn;
+            square.classList.add(turn);
+            turn = (turn === "X") ? "O" : "X";
+        }
+    });
+});
+}
