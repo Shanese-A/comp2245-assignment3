@@ -23,3 +23,23 @@ document.querySelectorAll("#board .square").forEach(square => {
         square.classList.remove("hover");
     });
 });
+function checkWinner() {
+    const winCombos = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+    let squares = document.querySelectorAll("#board .square");
+    let winner = null;
+    winCombos.forEach(combo => {
+        const [a, b, c] = combo;
+        if (squares[a].textContent && squares[a].textContent === squares[b].textContent && squares[a].textContent === squares[c].textContent) {
+            winner = squares[a].textContent;
+        }
+    });
+    if (winner) {
+        const status = document.getElementById("status");
+        status.textContent = `Congratulations! ${winner} is the Winner!`;
+        status.classList.add("you-won");
+    }
+}
